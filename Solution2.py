@@ -33,7 +33,7 @@ def get_commit_changes(repo, file_name):
     return list_diffs
 
 
-def scenario1(local_repo_path):
+def scenario(local_repo_path):
     # Инициализация репозитория
     repo = git.Repo(local_repo_path)
 
@@ -41,13 +41,16 @@ def scenario1(local_repo_path):
         if item.type == 'blob' and item.name.endswith('.txt'):
             file_name = item.name
             list_diffs = get_commit_changes(repo, file_name)
+            print(list_diffs)
             if list_diffs:
                 print(f'File: {file_name}')
                 for diff in list_diffs:
                     for line in diff:
                         print(line)
-
+    return list_diffs
 
 # Укажите путь к вашему локальному репозиторию
-local_repo_path = 'C:/Users/yakov/Pycharm Projects/Code for GIT'
-scenario1(local_repo_path)
+def scenario1():
+    local_repo_path = 'C:/Users/yakov/Pycharm Projects/Code for GIT'
+    return scenario(local_repo_path)
+
